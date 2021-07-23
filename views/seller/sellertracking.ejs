@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <%- include ../layout %>
+    <div class="container-fluid my-4">
+        <h3 align="center">สถานะจัดส่งสินค้า</h3>
+        <table id="myTable" class="table table-fluid my-3">
+            <script>
+              $(document).ready(function () {
+                      $('#myTable').DataTable();
+                  });
+            </script>
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">รหัสคำสั่งซื้อ</th>
+                  <th scope="col">รหัสสินค้า</th>
+                  <th scope="col">ชื่อสินค้า</th>
+                  <th scope="col">จำนวนสินค้า</th>
+                  <th scope="col">ชื่อลูกค้า</th>
+                  <th scope="col">ที่อยู่จัดส่ง</th>
+                  <th scope="col">วันที่สั่งสินค้า</th>
+                  <th scope="col">สถานะ</th>
+                  <th scope="col">รหัสติดตามพัสดุ</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% deliverybills.forEach(function(deliverybill){ %>
+                    <tr>
+                        <th scope="row" ><%= deliverybill.bill_id %></th>
+                        <th scope="row"><a href="/product/showproduct/<%=deliverybill.product_id%>"><%= deliverybill.product_id %></a></th>
+                        <td><%= deliverybill.product_name %></td>
+                        <td><%= deliverybill.qty %></td>
+                        <td><%= deliverybill.customer %></td>
+                        <td><%= deliverybill.address %></td>
+                        <td><%= moment(deliverybill.date).format("DD-MM-YYYY") %></td>
+                        <% if(!deliverybill.trackingnumber){ %>
+                            <td class="text-secondary">รอจัดส่ง</td>
+                        <%}else{%>
+                            <td class="text-success">จัดส่งแล้ว</td>
+                            <%}%>
+                        <td><%= deliverybill.trackingnumber %></th>
+                        <td><a href="/seller/addtracking/<%= deliverybill._id %>" class="btn btn-success">อัพเดตสถานะ</a></td>
+                    </tr>
+                        <%}) %>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+</body>
+</html>

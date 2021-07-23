@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinecus Shop</title>
+</head>
+<body>
+  <%- include ../layout %>
+  <div class="container mt-4">
+    <h1 align="center">User Register</h1>
+    <form action="/user/register" method="post">
+    <% if(locals.errors){%>
+        <ul class="alert alert-danger">
+                <% Object.values(errors).forEach(function(error){%>
+                <li><%= error.msg %></li>
+                <%})%>
+        </ul>
+    <%}%>
+      <div class="form-group">
+        <label>Username :</label>
+        <input type="text" name="username" id="" placeholder="Username" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Password :</label>
+        <input type="password" name="password" id="" placeholder="Password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Email :</label>
+        <input type="text" name="email" id="" placeholder="Email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>ประเภทผู้ใช้งาน :</label>
+        <select class="custom-select" id="" name="role">
+            <option selected value=""></option>
+            <option value="seller">ผู้ขาย</option>
+            <option value="customer">ผู้ซื้อ</option>
+        </select>
+    </div>
+      <input type="submit" value="Register" class="btn btn-primary">
+    </form>
+  </div>
+</body>
+</html>
+</body>
+</html>

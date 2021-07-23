@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <% include ../layout %>
+    <div class="container mt-4 mb-4">
+        <h1 align="center">Edit Products</h1>
+        <% if(locals.errors){ %>
+            <ul class="alert alert-danger">
+            <% Object.values(errors).forEach(function(error){ %>
+                    <li><%= error.msg %></li>
+            <%})%>
+            </ul>
+        <%}%>
+        <form action="/seller/editproduct" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<%= products[0]._id %>">
+            <div class="form-group">
+                <label>Product Name :</label>
+                <input type="text" name="name" id="" placeholder="Product Name" class="form-control" value="<%= products[0].name %>">
+            </div>
+            <div class="form-group">
+                <label>Description :</label>
+                <textarea name="description" id="" cols="50" rows="10" class="form-control" ><%= products[0].description %></textarea>
+            </div>
+            <div class="form-group">
+                <label>Price :</label>
+                <input type="number" name="price" id="" placeholder="Price" class="form-control" min=1 value="<%= products[0].price %>" >
+            </div>
+            <div class="form-group">
+                <label for="">Product Image :</label>
+                <input type="file" name="image" id="" class="form-control" value="<%= products[0].image %>" >
+            </div>
+            <div class="form-group">
+                <select class="custom-select" id="" name="category">
+                    <option selected value="<%= products[0].category %>"><%= products[0].category %></option>
+                    <% categories.forEach(function(category){ %>
+                        <option value="<%= category.name %>">
+                            <%= category.name %>
+                        </option>
+                    <%})%>
+                </select>
+            </div>
+            <input type="submit" value="แก้ไข" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

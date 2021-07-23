@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <%- include ../layout %>
+    <div class="container my-4">
+        <h3 align="center">ตะกร้าสินค้า</h3>
+        <% if(cart.items.length>0){ %>
+          <table id="myTable" class="table table-fluid my-3">
+            <script>
+              $(document).ready(function () {
+                      $('#myTable').DataTable();
+                  });
+            </script>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">รหัสสินค้า</th>
+                  <th scope="col">ชื่อสินค้า</th>
+                  <th scope="col">จำนวน</th>
+                  <th scope="col">ราคา</th>
+                  <th scope="col">รวม</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% cart.items.forEach(function(product){ %>
+                    <tr>
+                        <td><a href="/product/showproduct/<%=product.item %>"><%= product.item %></a></td>
+                        <th scope="row"><%= product.title %></th>
+                        <td><%= product.qty %></td>
+                        <td><%= formatMoney(product.price) %></td>
+                        <td><%= formatMoney(product.price * product.qty) %></td>
+                        <td align="center"><button type="button" class="btn btn-danger delete-item" data-id="<%=product.item%>">Delete</button></td>
+                      </tr>
+                <%})%>
+                </tbody>
+            </table>
+            <hr>
+              <div class="row">
+                <div class="col-md-8">
+                  <h6 align="center"><strong>ข้อมูลผู้ซื้อสินค้า</strong></h6>
+                  <form action="/customer/payment" method="post" class="form-group">
+                    <div class="form-group">
+                      <label>ชื่อ-นามสกุล :</label>
+                      <input type="text" name="name" id="name" placeholder="กรุณาระบุ ชื่อ-นามสกุล" class="form-control" value="<%= users[0].name %>">
+                    </div>
+                    <div class="form-group">
+                      <label>เบอร์โทรศัพท์ :</label>
+                      <input type="tel" name="tel" id="tel" placeholder="กรุณาระบุ เบอร์โทรศัพท์" class="form-control" value="<%= users[0].tel %>">
+                    </div>
+                    <div class="form-group">
+                      <label>ที่อยู่จัดส่ง :</label>
+                      <input type="text" name="address" id="address" placeholder="กรุณาระบุ บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์" class="form-control" value="<%= users[0].address %>">
+                    </div>
+                    <input type="hidden" name="cart" id="" class="form-control" value="<%= cart.items %>">
+                    <input type="button" class="btn btn-secondary" value="จ่ายเงิน" id="info-btn">
+                    <div class="stripe">
+                      <script src="http://checkout.stripe.com/checkout.js"
+                      class="stripe-button"
+                      data-name="Cinecus" 
+                      charset="utf-8"
+                      data-key ="pk_test_51J5sztExKBWaCkFDlbsH8rq0jO9xYtznBoUN0KC3eV3aJyx2sL3yjae3ea9Li1GtEMbhMFHf9SXQdcElg6ViDoim00v3YXQnLA"
+                      data-description = "Cinecus Shop"
+                      data-amount="<%= cart.total*100 %>"
+                      data-currency="usd"
+                      >
+                    </script>
+                    </div> 
+                  <script type="text/javascript">
+                    $(document).ready(function(){
+                      $('#info-btn').click(function(){
+                        if($('#name').val()=="" && $('#tel').val()=="" && $('#address').val()==""){
+                          alert('กรุณากรอกข้อมูลผู้ซื้อสินค้าให้ครบถ้วน')
+                        }else{
+                          if(confirm('ยืนยันที่อยู่จัดส่งใช่หรือไม่')){
+                            $('#info-btn').hide()
+                            $('.stripe').show()
+                          }
+                        }
+                      })
+                      $('.stripe').hide()
+                    })
+                  </script>
+                    <input type="hidden" name="amount" value="<%= cart.total*100 %>">
+                  </form>
+                </div>
+                <div class="col-md-4">
+                  <h2 align="right">ยอดชำระเงิน : <%= formatMoney(cart.total) %></h2>
+                </div>
+              </div>
+            <%}else{%>
+                <div class="alert alert-danger">
+                    ไม่มีสินค้าในตะกร้า
+                </div>
+            <%}%>
+          </div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('.delete-item').on('click',function(){
+          var delete_id = $(this).data(delete_id)
+          var url = "/customer/delete/"+delete_id.id
+          if(confirm("ลบข้อมูลนี้ใช่ไหม?")){
+              $.ajax({
+                  url:url,
+                  type:'GET',
+                  success:function(result){
+                      location.reload();
+                      console.log("success")
+                  },
+                  error:function(error){
+                      console.log(error)
+                  }
+              })
+          }      
+      })
+  })
+</script>
+</html>

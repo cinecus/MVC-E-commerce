@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <%- include ../layout %>
+    <div class="container mt-4">
+        <h1 align="center">Product Manage</h1>
+        
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills w-100">
+                <li class="nav-link">Slide Bar</li>
+                <li class="nav-link ml-auto">
+                    <a href="/admin/slidebar/add" class="nav-link active">Add Slide bar</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% slidebars.forEach(function(slidebar){%>
+                        <tr>
+                            <th scope="row"><%= slidebar._id %></th>
+                            <td><%= slidebar.title %></td>
+                            <td><img class="" src="/images/<%= slidebar.image %>" alt="" width="400px" height="200px"></td>
+                            <td>
+                                <a href="/admin/slidebar/edit/<%= slidebar._id %>" class="btn btn-success edit">Edit</a>
+                                <td><button type="button" class="btn btn-danger delete-item" data-id="<%=slidebar._id%>">Delete</button></td>
+                            </td>
+                        </tr>
+                    <%})%> 
+                    </tbody>
+                </table>
+    </div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete-item').on('click',function(){
+            var delete_id = $(this).data(delete_id)
+            var url = "/admin/slidebar/"+delete_id.id
+            if(confirm("ลบข้อมูลนี้ใช่ไหม?")){
+                $.ajax({
+                    url:url,
+                    type:'GET',
+                    success:function(result){
+                        location.reload();
+                        console.log("success")
+                    },
+                    error:function(error){
+                        console.log(error)
+                    }
+                })
+            }      
+        })
+    })
+</script>
+</html>

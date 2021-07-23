@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <% include ../layout %>
+    <div class="container mt-4">
+        <h1 align="center">อัพเดตโปรไฟล์</h1>
+        <form action="/customer/info" method="post">
+        <div class="form-group">
+            <label>ชื่อ-นามสกุล :</label>
+            <input type="text" name="name" id="" placeholder="กรุณาระบุ ชื่อ-นามสกุล" class="form-control" value="<%= users[0].name %>">
+          </div>
+          <div class="form-group">
+            <label>เบอร์โทรศัพท์ :</label>
+            <input type="tel" name="tel" id="" placeholder="กรุณาระบุ เบอร์โทรศัพท์" class="form-control" value="<%= users[0].tel %>">
+          </div>
+          <div class="form-group">
+            <label>ที่อยู่จัดส่ง :</label>
+            <input type="text" name="address" id="" placeholder="กรุณาระบุ บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์" class="form-control" value="<%= users[0].address %>">
+          </div>
+          <input type="submit" value="อัพเดต" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+    
+</body>
+</html>

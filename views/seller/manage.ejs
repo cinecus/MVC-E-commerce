@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinecus Shop</title>
+</head>
+<body>
+    <%- include ../layout %>
+    <div class="container mt-4">
+        <h1 align="center">Product Manage</h1>
+        <div class="card">
+            <div class="row mt-4 mb-4">
+                <div class="card mx-auto my-auto" style="width: 18rem; height: 10rem;">
+                    <div class="card-body">
+                      <h5 class="card-title "><strong>ลงทะเบียนสินค้า</strong></h5>
+                      <p class="card-text">สำหรับลงทะเบียนสินค้าในร้าน</p>
+                      <a href="/seller/addproduct" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+                <div class="card mx-auto my-auto" style="width: 18rem; height: 10rem;">
+                    <div class="card-body">
+                      <h5 class="card-title "><strong>ดูสินค้า</strong></h5>
+                      <p class="card-text">สำหรับลบหรือแก้ไขสินค้าในร้าน</p>
+                      <a href="/seller/viewproduct" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+                <div class="card mx-auto my-auto" style="width: 18rem; height: 10rem;">
+                    <div class="card-body">
+                      <h5 class="card-title "><strong>ข้อมูลการส่งสินค้า</strong></h5>
+                      <p class="card-text">ดูข้อมูลการส่งสินค้า</p>
+                      <a href="/seller/tracking" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>
