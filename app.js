@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session')
-
+const keys = require('./config/key')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
@@ -13,7 +13,7 @@ const user_passport = require('./config/user_passport');
 
 var flash = require("express-flash")
 var { check, validationResult } = require('express-validator')
-var stripe = require('stripe')('sk_test_51J5sztExKBWaCkFD1sRYIR6kRpEOiSYeB2UpccBIJXoxhT44GHZueDoBeMeqcfq9SyKlCn2R0AVQyRsbckEdmjYt00YpgLOfVu')
+var stripe = require('stripe')(keys.stripeSecretKey)
 
 var multer = require('multer')
 var upload = multer({dest:'./public/images'})

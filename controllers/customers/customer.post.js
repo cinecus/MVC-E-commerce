@@ -1,4 +1,5 @@
-var stripe = require('stripe')('sk_test_51J5sztExKBWaCkFD1sRYIR6kRpEOiSYeB2UpccBIJXoxhT44GHZueDoBeMeqcfq9SyKlCn2R0AVQyRsbckEdmjYt00YpgLOfVu')
+const key = require('../../config/key')
+const stripe = require('stripe')(key.stripeSecretKey)
 
 const products = require('../../models/products.model')
 const bills = require('../../models/bills.model')

@@ -1,4 +1,6 @@
 const moment = require('moment')
+const key = require('../../config/key')
+const stripe = require('stripe')(key.stripeSecretKey)
 
 const bills = require('../../models/bills.model')
 const deliverybills = require('../../models/deliverybills.model')
@@ -16,7 +18,7 @@ const customer_getCart = (req,res,next)=>{
     }
     displayCart.total = total
     users.find({username:req.user.username},{},function(err,user){
-        res.render('customer/cart',{cart:displayCart,users:user})
+        res.render('customer/cart',{cart:displayCart,users:user,stripePublishableKey:key.stripePublishableKey})
     })
 }
 

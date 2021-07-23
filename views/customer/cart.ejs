@@ -43,6 +43,7 @@
             <hr>
               <div class="row">
                 <div class="col-md-8">
+                  <h1><%= stripePublishableKey %></h1>
                   <h6 align="center"><strong>ข้อมูลผู้ซื้อสินค้า</strong></h6>
                   <form action="/customer/payment" method="post" class="form-group">
                     <div class="form-group">
@@ -64,7 +65,7 @@
                       class="stripe-button"
                       data-name="Cinecus" 
                       charset="utf-8"
-                      data-key ="pk_test_51J5sztExKBWaCkFDlbsH8rq0jO9xYtznBoUN0KC3eV3aJyx2sL3yjae3ea9Li1GtEMbhMFHf9SXQdcElg6ViDoim00v3YXQnLA"
+                      data-key ="<%=stripePublishableKey %>"
                       data-description = "Cinecus Shop"
                       data-amount="<%= cart.total*100 %>"
                       data-currency="usd"
