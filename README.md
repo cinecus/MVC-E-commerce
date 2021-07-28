@@ -11,13 +11,12 @@
 
 
 #เครื่องมือที่ใช้ 
--> nodeJS 
--> Express 
--> Bootstrap 
--> JQUERY 
--> AJAX
--> EJS 
--> DATABASE : MONGODB (dependency => monk)
+1.nodeJS 
+2.Express 
+3.Bootstrap 
+4.JQUERY 
+5.EJS 
+6.DATABASE : MONGODB (dependency => monk)
 
 #วัตถุประสงค์ที่จัดทำ 
 -ฝึกการใช้ nodejs express 
