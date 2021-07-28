@@ -11,18 +11,20 @@
 
 
 #เครื่องมือที่ใช้ 
-1.nodeJS 
-2.Express 
-3.Bootstrap 
-4.JQUERY 
-5.EJS 
-6.DATABASE : MONGODB (dependency => monk)
+1. nodeJS 
+2. Express 
+3. Bootstrap 
+4. JQUERY 
+5. EJS
+6. DATABASE : MONGODB (dependency => monk)
+
 
 #วัตถุประสงค์ที่จัดทำ 
--ฝึกการใช้ nodejs express 
--ฝึกการใช้ database mongodb ที่เป็น NoSQL 
--ฝึกการทำระบบ login ด้วย passport authenticate 
--ฝึกการใช้ git github ลงผลงาน และอัพเดตผลงานในเวอร์ชั่นใหม่ๆ 
--ฝึกการ Deploy project ด้วย heroku โดย connect กับ github
+1. ฝึกการใช้ nodejs express 
+2. ฝึกการใช้ database mongodb ที่เป็น NoSQL
+3. ฝึกการทำระบบ login ด้วย passport authenticate
+4. ฝึกการใช้ git github ลงผลงาน และอัพเดตผลงานในเวอร์ชั่นใหม่ๆ
+5. ฝึกการ Deploy project ด้วย heroku โดย connect กับ github
+6. วางโครงสร้างโปรเจคแบบ MVC
 
 ทดลองใช้งาน https://cinecus-shop.herokuapp.com/
